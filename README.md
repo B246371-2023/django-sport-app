@@ -4,6 +4,10 @@ This a Django project that allows users to login to your website and allows them
 ## Prerequisites:
 * [Python](https://www.python.org/) Installed (I used 3.8.9)
 * [Django](https://www.djangoproject.com/) installed. (I used 3.1.2)
+* MySQL version higher than 8.0.0
+* pandas
+* numpy
+
 * A Terminal.
 
 You can install Django with:
@@ -11,20 +15,32 @@ You can install Django with:
 pip install Django==3.1.2
 ```
 
-## Cloning The Repository
+2024-3-21
 
-To get started, you need to clone this repository. You can click [here](https://github.com/vismodo/django-login-and-register/archive/master.zip) to download, or you can download it with [git](https://git-scm.com/) in your Terminal / Command Prompt:
-```bash
-git https://github.com/vismodo/django-login-and-register.git
-```
+- Successfully built the MySQL connection.
 
-You also have to enter the directory. You can do that with Terminal / Command Prompt:
+- Added file /app/management/commands/test_data_generate.py
 
-```bash
-cd django-login-and-register
-```
+  - Used for generating datasets required for testing. If more tests need to be generated, parameters can be manually modified.
 
-Once that is done, you can run it on a localhost!
+- Added file /app/management/commands/import_csv_to_mysql.py
+
+  - Used to import the generated data into the created MySQL database.
+
+- Added file /migration/services.py
+
+  - Core analysis code of the program, containing analysis of performance data in the database (this function will analyze the heart rate, speed, and shot accuracy of a specific player's last three matches) and provide training suggestions (completed), as well as analysis of health characteristic data (analyzing the stress level and sleep quality of a specific player) and provide corresponding health status assessments (to be completed).
+
+- Added file /templates/Performance_advice.html
+
+  - Used to test whether the advice results output by the analysis code can be called and displayed on the web page. This page can be retained and directly used as a training page, only needing to add some frontend design structures.
+  - Test  result：
+
+  - ![image-20240321063225271](C:\Users\14391\AppData\Roaming\Typora\typora-user-images\image-20240321063225271.png)
+
+- random_athlete_data_with_names --data extract
+
+![image-20240321062418152](C:\Users\14391\AppData\Roaming\Typora\typora-user-images\image-20240321062418152.png)
 
 ## Running The Server On Localhost
 
@@ -39,21 +55,7 @@ You would see some logs now. Ignore them. All you have to do is visit [`localhos
 
 Visit the [login page](http://localhost:8000/login/) and try to login! The preloaded user's email is `person1@org.com` and the password is `placeholder`. You can view this in [user_data.json](https://github.com/vismodo/django-login-and-register/blob/master/user_data.json). If you enter incorrect details, you will see a [Bootstrap Alert](https://getbootstrap.com/docs/4.0/components/alerts/). To register with an account, visit the [registration page](http://localhost:8000/register).
 
-## Register For An Account
 
-Visit the [registration page](http://localhost:8000/register/) and create an account!
-
-![register](https://github.com/vismodo/django-login-and-register/blob/master/pic1.png?raw=true)
-
-Using an email that is already in use will give you a [Bootstrap Alert](https://getbootstrap.com/docs/4.0/components/alerts/).
-
-![register3](https://github.com/vismodo/django-login-and-register/blob/master/pic3.png?raw=true)
-
-It also returns an alert if the passwords do not match.
-
-![register2](https://github.com/vismodo/django-login-and-register/blob/master/pic2.png?raw=true)
-
-The `Name` field is not used anywhere by the server. It is up to you to use that!
 
 ## The JSON File
 
@@ -61,8 +63,4 @@ The [JSON File](https://github.com/vismodo/django-login-and-register/blob/master
 
 ## Next Steps
 
-You can incorporate this inside your website as well! You can modify the templates and the fields. Use this project to authenticate your users.
 
-## Authors
-
-* [vismodo](https://github.com/vismodo) (Owner): All Commits
